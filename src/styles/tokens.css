@@ -1,0 +1,28 @@
+:root {
+  /* Backgrounds */
+  --color-void: #0a0a0f;
+  --color-crypt: #12121e;
+  --color-shadow: #1e1e32;
+  /* Accents */
+  --color-ecto: #39ff14;
+  --color-specter: #9b59b6;
+  --color-crimson: #c0392b;
+  --color-bone: #e8e0d0;
+  --color-ash: #8a8a9a;
+  /* Text-safe variants of specter/crimson: the base colours are < 4.5:1 on --color-crypt (WCAG AA). Use these for text only. */
+  --color-specter-text: #b98ad0;
+  --color-crimson-text: #e5655a;
+  /* Glow effects */
+  --glow-ecto: 0 0 8px #39ff14, 0 0 24px #39ff1440;
+  --glow-specter: 0 0 8px #9b59b6, 0 0 24px #9b59b640;
+  --glow-crimson: 0 0 8px #c0392b, 0 0 24px #c0392b40;
+  /* Member accent colours (portrait frame + radar polygon only) */
+  --color-char-luna: #3aa0ff;
+  --color-char-seven: #a06bff;
+  --color-char-verna: #8f86c8;
+  --color-char-azria: #ff6fb5;
+  --color-char-crow: #6a4bd8;
+  --color-char-serefi: #c9d3e6;
+  --color-char-mint: #5fe06b;
+  --color-char-rave: #ff4d6d;
+}

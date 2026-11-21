@@ -1,0 +1,10 @@
+node_modules/
+.next/
+*.env
+scripts/preview/
+
+next-env.d.ts
+tsconfig.tsbuildinfo
+# Source art sheets are not published (see README, Art assets)
+img/
+picture.md

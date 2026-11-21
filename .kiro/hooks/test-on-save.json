@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Tests on Source Save",
+      "trigger": "PostFileSave",
+      "description": "Runs Vitest (unit + PBT) whenever a TypeScript source or test file is saved under src/lib/",
+      "matcher": "src[\\\\/]lib[\\\\/].*\\.tsx?$",
+      "action": {
+        "type": "command",
+        "command": "cd \"$WORKSPACE_DIR\" && npm test -- --run --reporter=verbose 2>&1 | tail -40",
+        "timeout": 120
+      }
+    }
+  ]
+}

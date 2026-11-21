@@ -1,0 +1,15 @@
+﻿import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+const transport = new StdioClientTransport({ command: process.execPath, args: ['node_modules/tsx/dist/cli.mjs', 'src/mcp/server.ts'] });
+const client = new Client({ name: 't', version: '1' });
+await client.connect(transport);
+const tools = await client.listTools();
+console.log('tools:', tools.tools.map((t) => t.name).join(', '));
+const ok = await client.callTool({ name: 'necrocrew_assign', arguments: { projectId: 'cyber-ghost-vr', mode: 'Speedrun' } });
+const r = JSON.parse(ok.content[0].text);
+console.log('assign:', r.estimatedCompletionDate, 'over=' + r.isOverDeadline, 'people=' + r.assignments.length);
+const sim = await client.callTool({ name: 'necrocrew_simulate', arguments: { projectId: 'cyber-ghost-vr', assignments: r.assignments } });
+console.log('simulate matches:', JSON.parse(sim.content[0].text).estimatedDays === r.estimatedDays);
+const bad = await client.callTool({ name: 'necrocrew_assign', arguments: { projectId: 'nope', mode: 'Speedrun' } });
+console.log('bad:', bad.isError, bad.content[0].text);
+await client.close();

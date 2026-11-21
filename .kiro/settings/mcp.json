@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "necrocrew": {
+      "command": "npm",
+      "args": ["run", "--silent", "mcp"],
+      "autoApprove": ["necrocrew_assign", "necrocrew_simulate"]
+    }
+  }
+}

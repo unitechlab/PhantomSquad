@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint on Save",
+      "trigger": "PostFileSave",
+      "description": "Runs ESLint on any saved TypeScript/TSX file and surfaces warnings as errors",
+      "matcher": "src[\\\\/].*\\.tsx?$",
+      "action": {
+        "type": "command",
+        "command": "cd \"$WORKSPACE_DIR\" && npx eslint --max-warnings=0 \"$FILE\" 2>&1 | tail -20",
+        "timeout": 60
+      }
+    }
+  ]
+}

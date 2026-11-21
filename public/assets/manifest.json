@@ -1,0 +1,292 @@
+{
+  "characters/luna/full.webp": {
+    "src": "/assets/characters/luna/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/seven/full.webp": {
+    "src": "/assets/characters/seven/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/verna/full.webp": {
+    "src": "/assets/characters/verna/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/azria/full.webp": {
+    "src": "/assets/characters/azria/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/crow/full.webp": {
+    "src": "/assets/characters/crow/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/serefi/full.webp": {
+    "src": "/assets/characters/serefi/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/mint/full.webp": {
+    "src": "/assets/characters/mint/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/rave/full.webp": {
+    "src": "/assets/characters/rave/full.webp",
+    "width": 384,
+    "height": 512
+  },
+  "characters/seven/face.webp": {
+    "src": "/assets/characters/seven/face.webp",
+    "width": 177,
+    "height": 234
+  },
+  "characters/seven/mini.webp": {
+    "src": "/assets/characters/seven/mini.webp",
+    "width": 178,
+    "height": 192
+  },
+  "characters/luna/face.webp": {
+    "src": "/assets/characters/luna/face.webp",
+    "width": 200,
+    "height": 234
+  },
+  "characters/luna/mini.webp": {
+    "src": "/assets/characters/luna/mini.webp",
+    "width": 202,
+    "height": 192
+  },
+  "characters/verna/face.webp": {
+    "src": "/assets/characters/verna/face.webp",
+    "width": 187,
+    "height": 234
+  },
+  "characters/verna/mini.webp": {
+    "src": "/assets/characters/verna/mini.webp",
+    "width": 200,
+    "height": 192
+  },
+  "characters/serefi/face.webp": {
+    "src": "/assets/characters/serefi/face.webp",
+    "width": 172,
+    "height": 234
+  },
+  "characters/serefi/mini.webp": {
+    "src": "/assets/characters/serefi/mini.webp",
+    "width": 180,
+    "height": 192
+  },
+  "characters/crow/face.webp": {
+    "src": "/assets/characters/crow/face.webp",
+    "width": 179,
+    "height": 234
+  },
+  "characters/crow/mini.webp": {
+    "src": "/assets/characters/crow/mini.webp",
+    "width": 186,
+    "height": 192
+  },
+  "characters/mint/face.webp": {
+    "src": "/assets/characters/mint/face.webp",
+    "width": 156,
+    "height": 234
+  },
+  "characters/mint/mini.webp": {
+    "src": "/assets/characters/mint/mini.webp",
+    "width": 180,
+    "height": 192
+  },
+  "characters/rave/face.webp": {
+    "src": "/assets/characters/rave/face.webp",
+    "width": 176,
+    "height": 234
+  },
+  "characters/rave/mini.webp": {
+    "src": "/assets/characters/rave/mini.webp",
+    "width": 172,
+    "height": 192
+  },
+  "characters/azria/face.webp": {
+    "src": "/assets/characters/azria/face.webp",
+    "width": 212,
+    "height": 234
+  },
+  "characters/azria/mini.webp": {
+    "src": "/assets/characters/azria/mini.webp",
+    "width": 216,
+    "height": 192
+  },
+  "skills/skill-1.webp": {
+    "src": "/assets/skills/skill-1.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-2.webp": {
+    "src": "/assets/skills/skill-2.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-3.webp": {
+    "src": "/assets/skills/skill-3.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-4.webp": {
+    "src": "/assets/skills/skill-4.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-5.webp": {
+    "src": "/assets/skills/skill-5.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-6.webp": {
+    "src": "/assets/skills/skill-6.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-7.webp": {
+    "src": "/assets/skills/skill-7.webp",
+    "width": 84,
+    "height": 82
+  },
+  "skills/skill-8.webp": {
+    "src": "/assets/skills/skill-8.webp",
+    "width": 84,
+    "height": 82
+  },
+  "badges/badge-1.webp": {
+    "src": "/assets/badges/badge-1.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-2.webp": {
+    "src": "/assets/badges/badge-2.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-3.webp": {
+    "src": "/assets/badges/badge-3.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-4.webp": {
+    "src": "/assets/badges/badge-4.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-5.webp": {
+    "src": "/assets/badges/badge-5.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-6.webp": {
+    "src": "/assets/badges/badge-6.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-7.webp": {
+    "src": "/assets/badges/badge-7.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-8.webp": {
+    "src": "/assets/badges/badge-8.webp",
+    "width": 78,
+    "height": 78
+  },
+  "badges/badge-9.webp": {
+    "src": "/assets/badges/badge-9.webp",
+    "width": 78,
+    "height": 78
+  },
+  "scenes/city-map.webp": {
+    "src": "/assets/scenes/city-map.webp",
+    "width": 210,
+    "height": 148
+  },
+  "ui/map-thumb.webp": {
+    "src": "/assets/ui/map-thumb.webp",
+    "width": 118,
+    "height": 80
+  },
+  "ui/quest-complete.webp": {
+    "src": "/assets/ui/quest-complete.webp",
+    "width": 430,
+    "height": 95
+  },
+  "effects/summon-swirl.webp": {
+    "src": "/assets/effects/summon-swirl.webp",
+    "width": 220,
+    "height": 170
+  },
+  "effects/summon-pillar.webp": {
+    "src": "/assets/effects/summon-pillar.webp",
+    "width": 135,
+    "height": 175
+  },
+  "effects/burst-purple.webp": {
+    "src": "/assets/effects/burst-purple.webp",
+    "width": 280,
+    "height": 140
+  },
+  "effects/pixel-slash.webp": {
+    "src": "/assets/effects/pixel-slash.webp",
+    "width": 190,
+    "height": 195
+  },
+  "effects/bat.webp": {
+    "src": "/assets/effects/bat.webp",
+    "width": 230,
+    "height": 125
+  },
+  "scenes/night-city.webp": {
+    "src": "/assets/scenes/night-city.webp",
+    "width": 335,
+    "height": 190
+  },
+  "quests/haunted-mall-webar.webp": {
+    "src": "/assets/quests/haunted-mall-webar.webp",
+    "width": 492,
+    "height": 480
+  },
+  "quests/cyber-ghost-vr.webp": {
+    "src": "/assets/quests/cyber-ghost-vr.webp",
+    "width": 492,
+    "height": 480
+  },
+  "quests/specter-promo-video.webp": {
+    "src": "/assets/quests/specter-promo-video.webp",
+    "width": 492,
+    "height": 480
+  },
+  "quests/phantom-museum-ar.webp": {
+    "src": "/assets/quests/phantom-museum-ar.webp",
+    "width": 492,
+    "height": 480
+  },
+  "quests/moonlit-concert.webp": {
+    "src": "/assets/quests/moonlit-concert.webp",
+    "width": 492,
+    "height": 480
+  },
+  "quests/grave-shift-launch.webp": {
+    "src": "/assets/quests/grave-shift-launch.webp",
+    "width": 492,
+    "height": 480
+  },
+  "scenes/title.webp": {
+    "src": "/assets/scenes/title.webp",
+    "width": 1024,
+    "height": 576
+  },
+  "scenes/company-house.webp": {
+    "src": "/assets/scenes/company-house.webp",
+    "width": 1536,
+    "height": 1024
+  }
+}
