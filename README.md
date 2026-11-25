@@ -1,10 +1,27 @@
 # NecroCrew: Phantom Squad
 
-A studio-management game and resource planner, dressed as a dark-fantasy "Necro-Studio". You run a creative studio for 60 days. Pick the right phantom creators for each cursed quest, watch them walk to their rooms and work, and grow the studio's funds from 20,000 G to 110,000 G before the full moon.
+A staffing and deadline planner for a small creative studio — who works on what, for which client, by when — with a costume on: a dark-fantasy "Necro-Studio" where client projects are cursed quests, deadlines are the full moon, and the roster is eight phantom creators. The planning problem underneath is real: match skills to work, keep everyone under 100% allocation, hit deadlines, and keep the studio solvent while salaries and late penalties run against the clock.
+
+You can play it as a 60-day campaign (grow funds from 20,000 G to 110,000 G before time runs out), or use the same assignment and simulation engine headlessly through the MCP server or the HTTP API — the auto-assign and burndown-forecast logic that drives the game is also a standalone planning tool with no UI required.
 
 Built for **Kiroween 2026** (Costume Contest) with Kiro: specs, steering, hooks, property-based tests and an MCP server.
 
-- Live demo: _add the Vercel URL here after deploying_
+## Costume, mapped to function
+
+Every piece of theming stands for a real planning concept; the costume is not decoration layered on top, it is the UI.
+
+| In the story | In the planner |
+|---|---|
+| Phantom creator | Team member with skills, a daily rate and a capacity limit |
+| Cursed quest | Client project: required skills, workload, deadline, priority |
+| Summon Circle | Where unassigned people wait between projects |
+| Full moon / deadline | The date work must be done by, with an early bonus and a late penalty either side of it |
+| Summon Optimal Squad | One-click auto-staffing, in three modes (balanced load, fastest delivery, fewest people) |
+| Banished | Project delivered: streams finished, payment released |
+| Death March pulse | The one deadline-risk indicator allowed to animate continuously, and only while the risk is real |
+| Grimoire / skill levels | Skill matrix and training (raising a skill costs money and time, same as in a real studio) |
+
+- Live demo: https://unitechlab.app/linkageruler/phantomsquad/
 - Demo video (3 min): _add the link here_
 - English and Japanese UI (switch in the nav bar). 日本語に対応しています。
 
@@ -94,7 +111,8 @@ To use it from Kiro, add this to `.kiro/settings/mcp.json`:
     }
   }
 }
-```n
+```
+
 ## HTTP API
 
 - `POST /api/assign` with `{ "projectId": "cyber-ghost-vr", "mode": "Speedrun" }`
@@ -110,7 +128,19 @@ Errors return `{ "error": { "code", "message" } }` with status 422.
 
 `scripts/` has its own `package.json` and is excluded from the app build.
 
+## Deploy as a static site (Cloudflare Pages and similar)
+
+```bash
+npm run build:static            # site at the root of a domain: https://example.com/
+npm run build:static -- /game    # site in a sub-folder: https://example.com/game/
+```
+
+This writes the finished site to `out/`. Upload the **contents of `out/`** to any static host. For Cloudflare Pages, choose Direct Upload and drop the folder, or run `npx wrangler pages deploy out`.
+
+- **The sub-folder name must match where you put the files.** Files built for `/game` only work under `/game/`. If the page shows unstyled text, the build and the folder do not match: rebuild with the right name.
+- A static site has no server, so `/api/assign` and `/api/simulate` are not available there; the game does not use them.
+- `npm run build` and Vercel are unchanged.
+
 ## License
 
-- **Code**: MIT, Copyright (c) 2026 UNITECHLAB. See `LICENSE`.
-- **Artwork** (`public/assets/`): Copyright (c) 2026 UNITECHLAB. All rights reserved. It is included so the game can be run and judged; it is not under the MIT licence.
+MIT, see `LICENSE`. The artwork is not covered by it; see `NOTICE.md`.
