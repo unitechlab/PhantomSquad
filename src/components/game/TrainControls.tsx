@@ -7,6 +7,7 @@ import { MAX_SKILL_LEVEL, TRAIN_DAYS, trainingCost } from '@/lib/gameConfig';
 import { formatGold } from '@/lib/format';
 import { useL10n } from '@/hooks/useL10n';
 import { useGameState, useNecroCrew } from '@/store/useNecroCrew';
+import { ImpactButton } from '@/components/ui/ImpactButton';
 
 /** Skill levels of one member with a "train +1" button per skill. */
 export function TrainControls({ member }: { member: Member }): JSX.Element {
@@ -39,7 +40,7 @@ export function TrainControls({ member }: { member: Member }): JSX.Element {
                 <span className="text-ecto">{t('common.max')}</span>
               ) : (
                 <>
-                  <button
+                  <ImpactButton
                     type="button"
                     onClick={() => train(member.id, skill)}
                     disabled={reason !== null}
@@ -56,7 +57,7 @@ export function TrainControls({ member }: { member: Member }): JSX.Element {
                     }`}
                   >
                     {t('train.button', { cost: formatGold(trainingCost(level)) })}
-                  </button>
+                  </ImpactButton>
                   {reason && <span className="text-ash">{error(reason)}</span>}
                 </>
               )}

@@ -7,6 +7,8 @@ import { Portrait } from '@/components/art/Portrait';
 import { SkillIcon } from '@/components/art/SkillIcon';
 import { StatusBar } from '@/components/art/StatusBar';
 import { ParticleBurst } from '@/components/art/ParticleBurst';
+import { ImpactRing } from '@/components/art/ImpactRing';
+import { ImpactButton } from '@/components/ui/ImpactButton';
 import { useL10n } from '@/hooks/useL10n';
 import { useNecroCrew } from '@/store/useNecroCrew';
 import { memberAccentVar, memberLoad } from '@/lib/derive';
@@ -46,7 +48,7 @@ function AssignButton({ projectId }: { projectId: string }): JSX.Element {
   const [burst, setBurst] = useState(0);
   return (
     <span className="relative inline-block">
-      <button
+      <ImpactButton
         type="button"
         onClick={() => {
           summon(projectId);
@@ -56,7 +58,8 @@ function AssignButton({ projectId }: { projectId: string }): JSX.Element {
         className="rounded-md border border-ecto bg-crypt px-5 py-3 text-sm font-bold uppercase tracking-[0.08em] text-ecto shadow-ecto hover:bg-ecto hover:text-void"
       >
         {t('assign.summon')}
-      </button>
+      </ImpactButton>
+      <ImpactRing trigger={burst} />
       <ParticleBurst trigger={burst} />
     </span>
   );

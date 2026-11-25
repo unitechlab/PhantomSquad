@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useL10n } from '@/hooks/useL10n';
 import { useNecroCrew } from '@/store/useNecroCrew';
 import { playChime } from '@/lib/sound';
+import { ImpactButton } from '@/components/ui/ImpactButton';
 
 const LOW_FUNDS = 5000;
 
@@ -63,17 +64,17 @@ export function GameHud(): JSX.Element {
         >
           <span className="text-sm text-bone">{overLine}</span>
           <div className="ml-auto flex flex-wrap gap-2">
-            <button
+            <ImpactButton
               type="button"
               onClick={resetGame}
               className={`${button} font-bold uppercase tracking-[0.08em] border-ecto text-ecto shadow-ecto hover:bg-ecto hover:text-void`}
             >
               {t('hud.newCampaign')}
-            </button>
+            </ImpactButton>
             {!resultOpen && (
-              <button type="button" onClick={() => setResultOpen(true)} className={`${button} border-shadow text-bone hover:border-specter`}>
+              <ImpactButton type="button" onClick={() => setResultOpen(true)} className={`${button} border-shadow text-bone hover:border-specter`}>
                 {t('hud.viewSummary')}
-              </button>
+              </ImpactButton>
             )}
           </div>
         </div>
@@ -137,7 +138,7 @@ export function GameHud(): JSX.Element {
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <button
+          <ImpactButton
             type="button"
             onClick={() => setPlaying(!playing)}
             disabled={over}
@@ -147,7 +148,7 @@ export function GameHud(): JSX.Element {
             }`}
           >
             {playing ? t('hud.pause') : t('hud.play')}
-          </button>
+          </ImpactButton>
           <button
             type="button"
             onClick={advanceDay}

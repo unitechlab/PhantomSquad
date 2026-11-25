@@ -6,6 +6,7 @@ import { formatGold } from '@/lib/format';
 import { gameRank, mostValuable, type Rank } from '@/lib/gameEngine';
 import { useL10n } from '@/hooks/useL10n';
 import { useGameState, useNecroCrew } from '@/store/useNecroCrew';
+import { ImpactButton } from '@/components/ui/ImpactButton';
 import Link from 'next/link';
 
 const RANK_STYLE: Record<Rank, string> = {
@@ -81,13 +82,13 @@ export function GameResult(): JSX.Element | null {
         </dl>
         <p className="text-sm text-ash">{won ? t('result.outro.won') : t('result.outro.lost')}</p>
         <div className="flex flex-wrap gap-3">
-          <button
+          <ImpactButton
             type="button"
             onClick={resetGame}
             className="rounded-md border border-ecto px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-ecto shadow-ecto hover:bg-ecto hover:text-void"
           >
             {t('result.newCampaign')}
-          </button>
+          </ImpactButton>
           <Link
             href="/guide"
             onClick={close}
@@ -95,9 +96,9 @@ export function GameResult(): JSX.Element | null {
           >
             {t('result.guide')}
           </Link>
-          <button type="button" onClick={close} className="rounded-md border border-shadow px-4 py-2 text-sm text-ash hover:text-bone">
+          <ImpactButton type="button" onClick={close} className="rounded-md border border-shadow px-4 py-2 text-sm text-ash hover:text-bone">
             {t('result.review')}
-          </button>
+          </ImpactButton>
         </div>
       </div>
     </Modal>
