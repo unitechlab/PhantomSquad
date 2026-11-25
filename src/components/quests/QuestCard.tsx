@@ -113,7 +113,9 @@ export function QuestCard({ project, run, onSelect }: QuestCardProps): JSX.Eleme
               {date(project.startDate)} → {date(project.deadline)}
             </p>
           </div>
-          <p className="text-right font-mono text-sm text-ecto">{formatGold(project.reward)}</p>
+          <p className="text-right font-mono text-sm text-ecto" title={t('quests.baseReward')}>
+            {formatGold(project.reward)}
+          </p>
         </div>
         <div className="flex gap-2 text-sm">
           <span className={`rounded px-2 py-1 ${PRIORITY_CLASS[project.priority]}`}>{priority(project.priority)}</span>

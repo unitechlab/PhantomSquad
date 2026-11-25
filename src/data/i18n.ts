@@ -227,6 +227,7 @@ const EN = {
   'quests.stamp': 'Banished',
   'quests.remaining': '{title} remaining work',
   'quests.alt': '{title}. {priority} priority. {start} to {end}. Reward {reward}.',
+  'quests.baseReward': 'Base reward, before any early-finish or combo bonus',
 
   // New quest form
   'form.title': 'Register a Cursed Quest',
@@ -284,6 +285,12 @@ const EN = {
   'about.signature': 'Top skills',
   'about.salary': 'Salary {cost} per day',
   'about.efficiency': 'Works {percent}% faster',
+
+  // Footer
+  'footer.built': 'Built with Kiro for Kiroween 2026.',
+  'footer.credit': 'Artwork is Copyright (c) UNITECHLAB.',
+  'footer.license': 'Code license',
+  'footer.repo': 'Repository',
 } as const;
 
 export type TextKey = keyof typeof EN;
@@ -496,6 +503,7 @@ const JA: Record<TextKey, string> = {
   'quests.stamp': '封印済み',
   'quests.remaining': '{title} の残り作業',
   'quests.alt': '{title}。優先度: {priority}。{start}から{end}。報酬 {reward}。',
+  'quests.baseReward': '基本報酬。早期完了やコンボのボーナスは含みません',
 
   'form.title': '呪われたクエストを登録',
   'form.name': 'クエスト名',
@@ -548,6 +556,11 @@ const JA: Record<TextKey, string> = {
   'about.signature': '得意スキル',
   'about.salary': '日給 {cost}',
   'about.efficiency': '作業が{percent}%速い',
+
+  'footer.built': 'Kiroween 2026 のために、Kiro を使って作られました。',
+  'footer.credit': 'アートワークの著作権は UNITECHLAB. に帰属します。',
+  'footer.license': 'コードのライセンス',
+  'footer.repo': 'リポジトリ',
 };
 
 const DICTIONARIES: Record<Lang, Record<TextKey, string>> = { en: EN, ja: JA };
