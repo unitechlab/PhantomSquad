@@ -80,7 +80,9 @@ function QuestRow({ game, project }: { game: GameState; project: Project }): JSX
             {t('board.priorityLine', { priority: priority(project.priority), date: date(project.deadline) })}
           </span>
         </span>
-        <span className="text-right font-mono text-sm text-ecto">{formatGold(project.reward)}</span>
+        <span className="text-right font-mono text-sm text-ecto" title={t('quests.baseReward')}>
+          {formatGold(project.reward)}
+        </span>
       </span>
       {!banished && (
         <span className="block space-y-1">
