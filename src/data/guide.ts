@@ -112,7 +112,7 @@ export const GUIDE: Record<Lang, GuideContent> = {
       {
         title: 'Money',
         table: [
-          ['Reward', `Paid when the quest is finished. Total person-days x ${REWARD_PER_PERSON_DAY} x priority (Critical x${PRIORITY_MULTIPLIER.Critical}, High x${PRIORITY_MULTIPLIER.High}, Normal x${PRIORITY_MULTIPLIER.Normal}).`],
+          ['Reward', `The base reward is total person-days x ${REWARD_PER_PERSON_DAY} x priority (Critical x${PRIORITY_MULTIPLIER.Critical}, High x${PRIORITY_MULTIPLIER.High}, Normal x${PRIORITY_MULTIPLIER.Normal}). This is the number shown on quest cards and the board. What you actually get paid is this base, plus the early bonus and combo bonus below, minus any late penalty.`],
           ['Early bonus', `${pct(EARLY_BONUS_RATE)} of the reward for each full day finished before the deadline, up to ${EARLY_BONUS_MAX_DAYS} days.`],
           ['Late penalty', `${pct(LATE_PENALTY_RATE)} of the reward for each day the quest is still open after its deadline, up to ${pct(LATE_PENALTY_CAP)} of the reward. The reward is still paid when you finish.`],
           ['Salaries', 'Each creator has a daily salary. You pay salary x allocation for every day they still have open work in their streams. Waiting creators cost nothing.'],
@@ -240,7 +240,7 @@ export const GUIDE: Record<Lang, GuideContent> = {
       {
         title: 'お金のルール',
         table: [
-          ['報酬', `案件の完了時に入ります。総工数 × ${REWARD_PER_PERSON_DAY} × 優先度(Critical ×${PRIORITY_MULTIPLIER.Critical}、High ×${PRIORITY_MULTIPLIER.High}、Normal ×${PRIORITY_MULTIPLIER.Normal})です。`],
+          ['報酬', `基本報酬は、総工数 × ${REWARD_PER_PERSON_DAY} × 優先度(Critical ×${PRIORITY_MULTIPLIER.Critical}、High ×${PRIORITY_MULTIPLIER.High}、Normal ×${PRIORITY_MULTIPLIER.Normal})です。クエストカードやボードに出ている金額はこの基本報酬です。実際に入るお金は、この基本報酬に下記の早期ボーナスとコンボボーナスを足し、遅延ペナルティを引いた額です。`],
           ['早期ボーナス', `納期より1日早く終えるごとに、報酬の${pct(EARLY_BONUS_RATE)}です。最大${EARLY_BONUS_MAX_DAYS}日分です。`],
           ['遅延ペナルティ', `納期を過ぎても終わっていない日ごとに、報酬の${pct(LATE_PENALTY_RATE)}が引かれます。上限は報酬の${pct(LATE_PENALTY_CAP)}です。終えれば報酬は入ります。`],
           ['給料', '各クリエイターに日給があります。自分の枠に未完了の作業がある日は、日給 × 稼働率を支払います。待機中は無料です。'],

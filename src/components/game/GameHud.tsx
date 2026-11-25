@@ -1,5 +1,5 @@
 ﻿'use client';
-import { GAME_DAYS, GAME_SPEEDS, GOAL_FUNDS, MILESTONES } from '@/lib/gameConfig';
+import { GAME_DAYS, GAME_SPEEDS, GOAL_FUNDS, MILESTONES, START_FUNDS } from '@/lib/gameConfig';
 import { comboStatus, dayToDate } from '@/lib/gameEngine';
 import { formatGold, formatSigned } from '@/lib/format';
 import Link from 'next/link';
@@ -34,7 +34,8 @@ export function GameHud(): JSX.Element {
   const last = history[history.length - 1];
   const net = last ? last.income - last.salaries - last.penalties : 0;
   const over = outcome !== 'playing';
-  const goalRatio = Math.min(1, Math.max(0, funds / GOAL_FUNDS));
+  // The bar shows progress from the starting funds to the goal, so day 0 reads 0%, not "already 18% done".
+  const goalRatio = Math.min(1, Math.max(0, (funds - START_FUNDS) / (GOAL_FUNDS - START_FUNDS)));
   const shownDay = Math.min(day, GAME_DAYS);
   const restart = (): void => {
     if (!over && day > 0 && !window.confirm(t('hud.restartConfirm'))) return;
@@ -114,9 +115,9 @@ export function GameHud(): JSX.Element {
           <div
             role="progressbar"
             aria-label={t('hud.progress')}
-            aria-valuemin={0}
+            aria-valuemin={START_FUNDS}
             aria-valuemax={GOAL_FUNDS}
-            aria-valuenow={Math.max(0, funds)}
+            aria-valuenow={Math.max(START_FUNDS, funds)}
             className="relative mt-1 h-2 overflow-hidden rounded-sm bg-shadow"
           >
             <div className="h-full bg-specter transition-[width] duration-300 ease-out" style={{ width: `${goalRatio * 100}%` }} />
@@ -125,7 +126,7 @@ export function GameHud(): JSX.Element {
                 key={m}
                 aria-hidden="true"
                 className={`absolute top-0 h-full w-0.5 ${reached.includes(m) ? 'bg-ecto' : 'bg-ash'}`}
-                style={{ left: `${(m / GOAL_FUNDS) * 100}%` }}
+                style={{ left: `${(Math.max(0, m - START_FUNDS) / (GOAL_FUNDS - START_FUNDS)) * 100}%` }}
               />
             ))}
           </div>

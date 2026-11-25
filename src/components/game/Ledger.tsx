@@ -70,7 +70,7 @@ export function Ledger(): JSX.Element {
               {rows.map((h) => (
                 <tr key={h.day} className="border-t border-shadow align-top">
                   <td className="whitespace-nowrap py-1 pr-3">
-                    {h.day + 1} <span className="text-ash">{date(dayToDate(h.day))}</span>
+                    {h.day} <span className="text-ash">{date(dayToDate(h.day))}</span>
                   </td>
                   <td className="whitespace-nowrap py-1 pr-3 text-right text-ecto">{h.income > 0 ? formatGold(h.income) : '-'}</td>
                   <td className="whitespace-nowrap py-1 pr-3 text-right">{h.salaries > 0 ? formatGold(h.salaries) : '-'}</td>
