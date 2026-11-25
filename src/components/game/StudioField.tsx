@@ -348,7 +348,9 @@ export function StudioField(): JSX.Element {
         </AnimatePresence>
 
         <CoinBurst trigger={coins} />
-        <div className="pointer-events-none absolute left-1/2 top-[57%] z-[2000] flex w-max max-w-[90%] -translate-x-1/2 flex-col items-center gap-2">
+        {/* Capped at a readable line width (not a field percentage), so a long notice wraps instead of
+            stretching wide enough to sit on top of a room's work list on the sides of the floor. */}
+        <div className="pointer-events-none absolute left-1/2 top-[57%] z-[2000] flex w-max max-w-[min(90%,28rem)] -translate-x-1/2 flex-col items-center gap-2">
           <AnimatePresence>
             {notice && (
               <motion.div

@@ -11,6 +11,10 @@ import { lineFor, type Mood } from '@/lib/speech';
 
 const SPRITE_WIDTH = 72;
 const BUBBLE_MS = 2200;
+/** Staggers bubble start times so a day change does not pop every idle creator's bubble at once,
+ *  which would overlap several short lines in the Summon Circle. Derived from the id, not random,
+ *  so the same creator always starts at the same offset within the window. */
+const STAGGER_WINDOW_MS = 900;
 
 interface FieldMemberProps {
   member: Member;
@@ -21,6 +25,13 @@ interface FieldMemberProps {
   /** Seconds a walk takes. 0 skips the walk (reduced motion). */
   moveSeconds: number;
   paused: boolean;
+}
+
+/** A deterministic 0..STAGGER_WINDOW_MS offset from a member id, so bubble timing is stable across renders. */
+function hashToStagger(id: string): number {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+  return hash % STAGGER_WINDOW_MS;
 }
 
 /** One creator on the floor. Walks to its station, bobs while walking and taps while working. */
@@ -44,13 +55,21 @@ export function FieldMember({ member, x, y, activity, moveSeconds, paused }: Fie
   useEffect(() => {
     if (prevJob.current === job) return;
     prevJob.current = job;
-    const mood: Mood = activity.kind === 'working' ? 'work' : activity.kind === 'training' ? 'train' : 'idle';
-    setLine(lineFor(member.characterId, mood, activity.skill, lang));
-    const t = setTimeout(() => setLine(null), BUBBLE_MS);
-    return () => clearTimeout(t);
+    // A day change can move several creators into the same room at once (e.g. everyone idle in the
+    // Summon Circle); staggering the start keeps their bubbles from popping in on top of each other.
+    const stagger = hashToStagger(member.id);
+    const showTimer = setTimeout(() => {
+      const mood: Mood = activity.kind === 'working' ? 'work' : activity.kind === 'training' ? 'train' : 'idle';
+      setLine(lineFor(member.characterId, mood, activity.skill, lang));
+    }, stagger);
+    const hideTimer = setTimeout(() => setLine(null), stagger + BUBBLE_MS);
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
     // The language is read when the line is picked, not as a trigger: switching language must not make everyone speak.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [job, activity.kind, activity.skill, member.characterId]);
+  }, [job, activity.kind, activity.skill, member.characterId, member.id]);
 
   const motionClass = moving ? 'walking' : activity.kind === 'working' ? 'working' : '';
 

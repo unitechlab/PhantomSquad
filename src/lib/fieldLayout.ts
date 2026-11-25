@@ -38,10 +38,14 @@ export const STATION_LABELS: Record<StationId, string> = {
 
 /** Offset from the room centre to the feet of the people (the bottom of the room, below the work list). */
 const STAND_OFFSET_Y = 6;
-const SLOT_SPACING_X = 7;
-/** Extra rows stand slightly higher, so they read as further back. */
-const SLOT_SPACING_Y = -5;
-const SLOTS_PER_ROW = 3;
+/** Spacing between people when there are few of them (room for a name badge and a speech bubble each). */
+const SLOT_SPACING_X_WIDE = 7;
+/** Spacing once a room holds enough people that SLOT_SPACING_X_WIDE would run past the room's edge. */
+const SLOT_SPACING_X_NARROW = 4.2;
+/** Above this count, people stand in one tighter row instead of a second one: the room is not tall
+ *  enough for two rows of sprite-height-plus-name-badge without the back row leaving the room picture
+ *  or covering the room's name badge (see fieldLayout.unit.test.ts). */
+const SINGLE_ROW_LIMIT = 6;
 
 export function stationFor(activity: Activity): StationId {
   if (activity.kind === 'training') return 'dojo';
@@ -49,7 +53,9 @@ export function stationFor(activity: Activity): StationId {
   return 'lounge';
 }
 
-/** Spreads the members of one station into rows of up to three, centred on the room. */
+/** Spreads the members of one station into a single row, centred on the room and on the floor.
+ *  Few people stand comfortably apart; more people stand closer together rather than stacking a
+ *  second row, which this room size cannot fit without overlapping the name badge above it. */
 export function layoutMembers(entries: { memberId: string; station: StationId }[]): Record<string, Point> {
   const byStation = new Map<StationId, string[]>();
   for (const e of entries) byStation.set(e.station, [...(byStation.get(e.station) ?? []), e.memberId]);
@@ -57,13 +63,11 @@ export function layoutMembers(entries: { memberId: string; station: StationId }[
   const result: Record<string, Point> = {};
   for (const [station, ids] of byStation) {
     const centre = STATIONS[station];
+    const spacing = ids.length > SINGLE_ROW_LIMIT ? SLOT_SPACING_X_NARROW : SLOT_SPACING_X_WIDE;
     ids.forEach((id, i) => {
-      const inRow = Math.min(SLOTS_PER_ROW, ids.length - Math.floor(i / SLOTS_PER_ROW) * SLOTS_PER_ROW);
-      const col = i % SLOTS_PER_ROW;
-      const row = Math.floor(i / SLOTS_PER_ROW);
       result[id] = {
-        x: centre.x + (col - (inRow - 1) / 2) * SLOT_SPACING_X,
-        y: centre.y + STAND_OFFSET_Y + row * SLOT_SPACING_Y,
+        x: centre.x + (i - (ids.length - 1) / 2) * spacing,
+        y: centre.y + STAND_OFFSET_Y,
       };
     });
   }
