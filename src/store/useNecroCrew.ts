@@ -47,6 +47,25 @@ export interface NecroCrewState extends GameState {
   advanceDay: () => void;
   resetGame: () => void;
   setResultOpen: (open: boolean) => void;
+  /** Replaces the whole game with a save loaded from storage (called once, after the page mounts). */
+  loadSave: (save: GameState & Partial<SavedExtras>) => void;
+}
+
+/** Bumped whenever the shape of GameState changes in a way old saves cannot satisfy; mismatches are discarded. */
+export const SAVE_VERSION = 1;
+export const SAVE_STORAGE_KEY = 'necrocrew.save';
+
+/** Saved fields beyond GameState: everything the player would expect to still be true after a reload. */
+export interface SavedExtras {
+  mode: AssignmentMode;
+  selectedProjectId: string;
+  speed: GameSpeed;
+  muted: boolean;
+}
+
+export interface SaveFile {
+  version: number;
+  game: GameState & Partial<SavedExtras>;
 }
 
 function pickGame(s: GameState): GameState {
@@ -195,9 +214,47 @@ export const useNecroCrew = create<NecroCrewState>()((set) => ({
       return { ...next, playing: s.playing && next.outcome === 'playing' && !banishedToday, resultOpen: justEnded || s.resultOpen };
     }),
 
-  resetGame: () => set({ ...initial(randomSeed()), error: null, playing: false, summonCount: 0, resultOpen: false }),
+  resetGame: () => {
+    clearSave();
+    set({ ...initial(randomSeed()), error: null, playing: false, summonCount: 0, resultOpen: false });
+  },
   setResultOpen: (resultOpen) => set({ resultOpen }),
+
+  loadSave: (save) => set({ ...save, error: null, playing: false }),
 }));
+
+/** Writes the current game to localStorage. Called on every change; cheap next to a 60-day campaign's size. */
+export function saveGame(): void {
+  try {
+    const s = useNecroCrew.getState();
+    const extras: SavedExtras = { mode: s.mode, selectedProjectId: s.selectedProjectId, speed: s.speed, muted: s.muted };
+    const file: SaveFile = { version: SAVE_VERSION, game: { ...pickGame(s), ...extras } };
+    window.localStorage.setItem(SAVE_STORAGE_KEY, JSON.stringify(file));
+  } catch {
+    // Storage can be blocked or full; the game still works, just without a save.
+  }
+}
+
+/** Reads a save from localStorage if its shape matches the current version. Never throws. */
+export function readSave(): (GameState & Partial<SavedExtras>) | null {
+  try {
+    const raw = window.localStorage.getItem(SAVE_STORAGE_KEY);
+    if (!raw) return null;
+    const file = JSON.parse(raw) as Partial<SaveFile>;
+    if (file.version !== SAVE_VERSION || !file.game || typeof file.game.day !== 'number') return null;
+    return file.game;
+  } catch {
+    return null;
+  }
+}
+
+export function clearSave(): void {
+  try {
+    window.localStorage.removeItem(SAVE_STORAGE_KEY);
+  } catch {
+    // Nothing to clear if storage is unavailable.
+  }
+}
 
 /** The game portion of the store as one object, for components that run engine functions. */
 export function useGameState(): GameState {
