@@ -6,9 +6,10 @@ export default function Template({ children }: { children: React.ReactNode }): J
   const reduced = useReducedMotion();
   return (
     <motion.div
-      initial={reduced ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduced ? 0 : 0.2, ease: 'easeOut' }}
+      // A small, fast fade: enough to feel like a transition, not enough to read as a blank page.
+      initial={reduced ? false : { opacity: 0.4 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: reduced ? 0 : 0.12, ease: 'easeOut' }}
     >
       {children}
     </motion.div>
