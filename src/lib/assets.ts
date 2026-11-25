@@ -9,15 +9,23 @@ export interface AssetEntry {
 
 const manifest = manifestJson as unknown as Record<string, AssetEntry>;
 
+/** Set by next.config.mjs when the static build is hosted in a sub-folder (empty at the site root). */
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
+function withBase(entry: AssetEntry): AssetEntry {
+  return BASE_PATH ? { ...entry, src: `${BASE_PATH}${entry.src}` } : entry;
+}
+
 export function asset(key: string): AssetEntry {
   const entry = manifest[key];
   if (!entry) throw new Error(`Missing asset: ${key}`);
-  return entry;
+  return withBase(entry);
 }
 
 /** Finished card art for the built-in quests (title, priority, dates and reward are part of the picture). Custom quests have none. */
 export function questArt(projectId: string): AssetEntry | null {
-  return manifest[`quests/${projectId}.webp`] ?? null;
+  const entry = manifest[`quests/${projectId}.webp`];
+  return entry ? withBase(entry) : null;
 }
 
 export type CharacterKind = 'face' | 'mini' | 'full';

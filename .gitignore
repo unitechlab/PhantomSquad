@@ -8,3 +8,4 @@ tsconfig.tsbuildinfo
 # Source art sheets are not published (see README, Art assets)
 img/
 picture.md
+out/
