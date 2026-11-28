@@ -22,7 +22,7 @@ Every piece of theming stands for a real planning concept; the costume is not de
 | Grimoire / skill levels | Skill matrix and training (raising a skill costs money and time, same as in a real studio) |
 
 - Live demo: https://unitechlab.app/linkageruler/phantomsquad/
-- Demo video (3 min): _add the link here_
+- Demo video (3 min): https://youtu.be/51AnyOoY_y4
 - English and Japanese UI (switch in the nav bar). 日本語に対応しています。
 
 ## Try it in 30 seconds
@@ -52,7 +52,7 @@ npm run build      # production build
 | **Agent hooks** | `.kiro/hooks/` runs ESLint on every saved source file and the tests whenever `src/lib/` changes. |
 | **Kiro Crew / MCP** | `npm run mcp` starts a stdio MCP server with two tools. The setup is in the MCP section below. |
 
-Test status: 100 tests pass (`npm test`). CI runs type check, lint, tests and build (`.github/workflows/ci.yml`).
+Test status: 107 tests pass (`npm test`). CI runs type check, lint, tests and build (`.github/workflows/ci.yml`).
 
 ## The game in one paragraph
 
